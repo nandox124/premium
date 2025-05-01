@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <title>Invitación 15 Años</title>
+  <style>
+   * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Pantalla de inicio */
+.intro-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-image: url('assets/fondo_inicial.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 100;
+}
+
+.intro-screen img {
+  width: 50%; /* Ajusta al 50% del ancho de la pantalla */
+  max-width: 500px; /* Máximo tamaño de la imagen */
+  cursor: pointer;
+  animation: pulse 1.5s infinite;
+}
+
+/* Nuevo texto 'Toca para abrir' */
+.intro-text {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+  margin-top: 20px;
+  animation: pulse 1.5s infinite;
+}
+
+.intro-screen .cursor {
+  width: 60px;
+  margin-top: 20px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Video portada */
+.hero {
+  width: 100%;
+  height: 0;
+  padding-top: 177.77%;
+  position: relative;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  box-shadow: 0 0 40px rgba(0,0,0,0.6);
+}
+
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+}
+
+.section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  padding: 0 10px;
+}
+
+.content-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+}
+
+.parallax-img {
+  width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  transition: transform 0.6s ease-out, opacity 1s ease-out;
+  will-change: transform, opacity;
+  opacity: 0;
+  transform: translateY(30px);
+  display: block;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  border: none;
+}
+
+.parallax-img.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.countdown {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  z-index: 3;
+}
+
+.countdown-item div {
+    font-size: 1em; /* Puedes ajustar el tamaño si es necesario */
+    color: white;
+    margin-top: 5px;
+    font-weight: 100; /* Para que sea más delgada */
+    font-family: 'Segoe UI', sans-serif; /* Puedes probar otras fuentes sans-serif delgadas */
+    text-transform: uppercase; /* Para que sean mayúsculas */
+    letter-spacing: 0.1em; /* Opcional: para dar un poco de espacio entre letras */
+    padding: 0 10px;
+    text-align: center;
+}
+.countdown-item span {
+    font-size: 2em;
+    font-weight: bold;
+    color: rgb(197, 31, 31);
+    padding: 0 10px; /* Añadimos un padding horizontal a la izquierda y derecha de los números */
+    text-align: center; /* Aseguramos que los números estén centrados */
+    display: block; /* Convertimos a bloque para que el padding afecte horizontalmente */
+}
+
+.countdown-item div {
+  font-size: 1.2em;
+  color: white;
+  margin-top: 5px;
+}
+
+.countdown-item:not(:last-child) {
+  border-right: 3px solid rgb(131, 4, 4);
+  padding-right: 10px;
+}
+
+.countdown-item:first-child {
+  border-left: 3px solid rgb(131, 4, 4);
+  padding-left: 10px;
+}
+
+.countdown-item:last-child {
+  border-right: 3px solid rgb(131, 4, 4);
+  padding-right: 10px;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.map-button, .whatsapp-button {
+    padding: 15px 30px; /* Reducimos un poco el padding vertical para la forma de píldora */
+    background-color: rgba(0, 0, 0, 0.7); /* Relleno negro con 70% de opacidad */
+    color: white;
+    font-size: 1vw; /* Ajustamos el tamaño de la fuente */
+    font-weight: 300; /* Establecemos un grosor de fuente delgado */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    border: 1px solid red; /* Borde delgado de 1 píxel de color rojo */
+    border-radius: 50px; /* Forma de píldora (valor alto para el radio) */
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: none; /* Eliminamos la sombra predeterminada para un estilo más plano */
+    transition: background-color 0.3s ease; /* Transición suave para el hover */
+    animation: pulse 1.5s infinite; /* Agregamos la animación de pulso */
+}
+
+.map-button:hover, .whatsapp-button:hover {
+    background-color: rgba(0, 0, 0, 0.9); /* Ligeramente más oscuro al pasar el ratón */
+}
+
+@media (max-width: 768px) {
+    .map-button, .whatsapp-button {
+        font-size: 3vw; /* Ajustamos el tamaño de la fuente para pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    .map-button, .whatsapp-button {
+        font-size: 4vw; /* Ajustamos aún más para pantallas más pequeñas */
+        padding: 10px 20px; /* Reducimos el padding en pantallas pequeñas */
+    }
+}
+
+/* Estilo para el botón flotante de música */
+.music-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: transparent; /* Hacemos el fondo transparente */
+  border: none;
+  width: 40px;
+  height: 40px;
+  display: none; /* Inicialmente invisible */
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  animation: pulse 1.5s infinite;
+  z-index: 200; /* Asegura que el botón esté por encima de todo */
+}
+
+.music-button img {
+  width: 100%; /* Ajusta el tamaño de la imagen al tamaño del botón */
+  height: 100%; /* Asegura que la imagen ocupe todo el espacio del botón */
+  object-fit: contain; /* Asegura que la imagen no se deforme */
+}
+
+@media (max-width: 768px) {
+  .parallax-img {
+    width: 100%;
+    height: auto;
+  }
+
+  .hero video {
+    width: 100%;
+    height: auto;
+  }
+
+  .map-button, .whatsapp-button {
+    font-size: 5vw;
+  }
+
+  /* Reducir el tamaño del contador en pantallas medianas */
+  .countdown-item span {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 480px) {
+  .map-button, .whatsapp-button {
+    padding: 15px 25px;
+  }
+
+  /* Reducir aún más el tamaño del contador en pantallas más pequeñas */
+  .countdown-item span {
+    font-size: 1.2em;
+  }
+}
+
+.final-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.action-button {
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+  animation: pulse 1.5s infinite;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.modal-content {
+  background: #222;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  text-align: center;
+}
+
+.modal .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.gallery img {
+  max-width: 120px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.qr-image {
+  max-width: 250px;
+  margin-top: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.slider {
+  position: relative;
+  max-width: 90%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-image {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+  
+.slider-btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  margin: 0 10px;
+}
+
+.slider-btn:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Eliminar borde y sombra de enfoque en los botones */
+.action-button:focus,
+.music-button:focus,
+.map-button:focus,
+.whatsapp-button:focus {
+  outline: none !important;
+  box-shadow: none !important; /* Asegura que no haya sombra */
+}
+
+*:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Eliminar el borde de enfoque en los botones con imagen */
+.music-button:focus,
+.regalo-button:focus,
+.camara-button:focus {
+  outline: none !important;
+  box-shadow: none !important; /* Eliminar cualquier sombra de enfoque */
+}
+
+/* Si es un botón con imagen, quitar el recuadro que aparece */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Asegúrate de que los botones con imagen no tengan bordes al hacer clic */
+.music-button img:focus,
+.regalo-button img:focus,
+.camara-button img:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+/* === FIX PARA BOTONES CON IMAGEN QUE SE REMARCAN FEO === */
+button:focus,
+button:active,
+img:focus,
+img:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.music-button:focus,
+.music-button:active,
+.music-button img:focus,
+.music-button img:active,
+
+.camara-button:focus,
+.camara-button:active,
+.camara-button img:focus,
+.camara-button img:active,
+
+.regalo-button:focus,
+.regalo-button:active,
+.regalo-button img:focus,
+.regalo-button img:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  background-color: transparent !important;
+}
+
+/* Elimina el parpadeo azul en dispositivos móviles al hacer tap */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+.final-buttons {
+    display: flex;
+    justify-content: center; /* Mantiene los elementos centrados */
+    gap: 20px; /* Espacio entre los botones */
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Estilo específico para el contenedor del icono (el enlace) */
+.camara-button {
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    animation: pulse 1.5s infinite;
+    display: flex; /* Para centrar la imagen dentro del enlace */
+    align-items: center;
+    justify-content: center;
+    border: none; /* Opcional: si no quieres un borde */
+    background-color: transparent; /* Opcional: si no quieres un fondo */
+}
+
+/* Asegúrate de que la imagen dentro del enlace tenga el tamaño correcto */
+.camara-button img {
+    width: 100%; /* La imagen ocupa todo el ancho del contenedor */
+    height: 100%; /* La imagen ocupa toda la altura del contenedor */
+    object-fit: contain; /* Ajusta la imagen sin deformarla, manteniendo proporciones */
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Intro con sobre -->
+  <div id="introScreen" class="intro-screen">
+    <img src="assets/sobre.png" alt="Abrir invitación" id="openEnvelope">
+    <div id="openText" class="intro-text">Toca para abrir</div>
+    <img src="assets/cursor.png" alt="Toca aquí" class="cursor">
+  </div>
+
+  <!-- Contenido principal -->
+  <div id="mainContent" class="hidden">
+    <!-- Video portada -->
+    <div class="hero">
+      <video muted playsinline loop id="heroVideo">
+        <source src="assets/portada.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <!-- Fondo decorativo -->
+    <div class="video-background">
+      <video muted playsinline loop id="backgroundVideo">
+        <source src="assets/fondo.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <!-- Secciones -->
+    <div class="section">
+      <img src="assets/imagen1.png" alt="Nombre y frase" class="parallax-img">
+      <div style="position: absolute; top: 5%; left: 50%; transform: translateX(-50%); color: red; font-size: 2em; font-family: 'Great Vibes', cursive; z-index: 3; text-align: center;">
+        Faltan
+    </div>
+    <div id="countdown" class="countdown">
+        <div class="countdown-item"><span id="days"></span><div>días</div></div>
+        <div class="countdown-item"><span id="hours"></span><div>horas</div></div>
+        <div class="countdown-item"><span id="minutes"></span><div>minutos</div></div>
+        <div class="countdown-item"><span id="seconds"></span><div>segundos</div></div>
+    </div>
+    </div>
+
+    <div class="section">
+      <div class="content-center">
+        <img src="assets/imagen2.png" alt="Papás" class="parallax-img">
+        <a href="https://www.google.com/maps" target="_blank" class="map-button">Ver salon</a>
+      </div>
+    </div>
+
+    <div class="section">
+      <img src="assets/imagen3.png" alt="Fiesta y padrinos" class="parallax-img">
+    </div>
+
+    <div class="section">
+      <div class="content-center">
+        <img src="assets/imagen4.png" alt="Cronograma" class="parallax-img">
+        <!-- Botón de WhatsApp alineado correctamente en la imagen 4 -->
+        <a href="https://wa.me/1234567890" target="_blank" class="whatsapp-button">Confirma tu asistencia</a>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="content-center">
+        <img src="assets/imagen5.png" alt="Despedida" class="parallax-img">
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio -->
+  <audio id="backgroundMusic" loop>
+    <source src="assets/musica.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- Botón flotante de música -->
+  <div id="musicButton" class="music-button" onclick="toggleMusic()">
+    <img id="musicIcon" src="assets/music-icon.png" alt="Música" />
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const openEnvelope = document.getElementById('openEnvelope');
+      const introScreen = document.getElementById('introScreen');
+      const mainContent = document.getElementById('mainContent');
+      const heroVideo = document.getElementById('heroVideo');
+      const backgroundVideo = document.getElementById('backgroundVideo');
+      const music = document.getElementById('backgroundMusic');
+      const musicButton = document.getElementById('musicButton');
+      const musicIcon = document.getElementById('musicIcon');
+
+      openEnvelope.addEventListener('click', () => {
+        introScreen.classList.add('hidden');
+        mainContent.classList.remove('hidden');
+        music.play();
+        heroVideo.play();
+        backgroundVideo.play();
+        musicButton.style.display = 'flex';
+      });
+
+      window.toggleMusic = function () {
+        if (music.paused) {
+          music.play();
+          musicIcon.src = 'assets/music-icon-playing.png';
+        } else {
+          music.pause();
+          musicIcon.src = 'assets/music-icon.png';
+        }
+      };
+
+      const parallaxImages = document.querySelectorAll('.parallax-img');
+      const videoBackground = document.querySelector('.video-background');
+
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset;
+        parallaxImages.forEach(img => {
+          const offsetTop = img.parentElement.offsetTop;
+          const distance = (scrollTop - offsetTop + window.innerHeight) * 0.1;
+          img.style.transform = `translateY(${distance}px)`;
+        });
+        videoBackground.style.transform = `translateY(${scrollTop * 0.3}px)`;
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible');
+          }
+        });
+      }, { threshold: 0.3 });
+
+      parallaxImages.forEach(img => observer.observe(img));
+
+      function startCountdown() {
+        const daysElement = document.getElementById('days');
+        const hoursElement = document.getElementById('hours');
+        const minutesElement = document.getElementById('minutes');
+        const secondsElement = document.getElementById('seconds');
+        const targetDate = new Date('2025-05-15T00:00:00');
+
+        function updateCountdown() {
+          const now = new Date();
+          const remaining = targetDate - now;
+
+          if (remaining <= 0) {
+            daysElement.textContent = '0';
+            hoursElement.textContent = '0';
+            minutesElement.textContent = '0';
+            secondsElement.textContent = '0';
+            return;
+          }
+
+          const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+
+          daysElement.textContent = days;
+          hoursElement.textContent = hours;
+          minutesElement.textContent = minutes;
+          secondsElement.textContent = seconds;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+      }
+
+      startCountdown();
+
+      document.addEventListener('contextmenu', function(event) {
+        event.preventDefault();
+      });
+
+      
+    });
+    window.toggleGift = function () {
+        const modal = document.getElementById('giftModal');
+        modal.classList.toggle('hidden');
+    };
+  </script>
+<!-- Botones de cámara y regalo -->
+<div class="final-buttons">
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxQEevBAyoHczzvWydwAGWIYbr7lqVqZYjbPqTodVAzMb13A/viewform?usp=header" target="_blank" class="action-button camara-button">
+    <img src="assets/camara.png" alt="Confirmar Asistencia">
+</a>
+<img src="assets/regalo.png" alt="Sugerencia" class="action-button" onclick="toggleGift()">
+</div>
+
+
+
+<!-- Imagen de sugerencia -->
+<div id="giftModal" class="modal hidden">
+  <div class="modal-content" style="text-align: center;">
+      <span class="close" onclick="toggleGift()">×</span>
+      <img id="giftImage" src="assets/regalo-imagen.jpg" alt="Sugerencia de Regalo" class="qr-image" style="margin-top: 20px;">
+  </div>
+</div>
+</div>
+
+<footer>
+    <p style="text-align: center; color: white; padding: 20px 0; background-color: rgba(0, 0, 0, 0.7);">
+        © 2025 ARTS Todos los derechos reservados.
+        <a href="https://www.facebook.com/TuPaginaDeFacebook" target="_blank" style="color: #de180a; text-decoration: none; font-weight: bold;">Visítanos</a>
+    </p>
+</footer>
+</body>
+</html>
